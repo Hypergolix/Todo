@@ -1,0 +1,26 @@
+.Add-Container{
+  padding-left: 20px;
+  width: 80%;
+  height: 70px;
+  background-color: #84BC9C;
+  margin-top: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+  .Exit-Button{
+    // background-color: #84BC9C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    aspect-ratio: 1;
+    &:hover{
+      cursor: pointer;
+      background-color: #a1cdb4;
+      // opacity: 0.5;
+    }
+  }
+}

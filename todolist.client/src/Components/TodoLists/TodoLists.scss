@@ -1,0 +1,45 @@
+.TodoLists{
+  list-style: none;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  li{
+    padding-left: 20px;
+    width: 80%;
+    height: 70px;
+    background-color: #84BC9C;
+    margin-top: 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    a{
+      // background-color: #84BC9C;
+      color: #000;
+      text-decoration: none;
+      width: 100%;
+      height: 100%;
+      text-align: start;
+      line-height: 70px;
+      font-size: 24px;
+      &:hover{
+        cursor: pointer;
+        background-color: #a1cdb4;
+        // opacity: 0.5;
+      }
+    }
+    .IconBox{
+      // background-color: #84BC9C;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      aspect-ratio: 1;
+      &:hover{
+        cursor: pointer;
+        background-color: #a1cdb4;
+        // opacity: 0.5;
+      }
+    }
+  }
+}
