@@ -9,13 +9,15 @@ import {
   BrowserRouter as Router,
   Route,
   Link,
-  Routes
+  Routes,
+  useNavigate
 } from "react-router-dom";
 import TodoListPage from './Components/TodoListPage/TodoListPage';
 
 // Native?
 
 export default function App() {
+  const navigate = useNavigate();
   const [addVisible, setAddVisible] = useState(false);
   // const [updateList, setUpdateList] = useState<TodoList[]>([]);
   const [todoLists, setTodoLists] = useState<TodoList[]>([]);
@@ -65,10 +67,18 @@ export default function App() {
   }
   // BUG: can't delete the list that was last created
 
+  const openShare = () => {
+    let code = prompt("Enter share code");
+    if (code !== '') navigate(`/TodoListPage?id=${code}`);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <AddButton cb={addClicked} />
+        <div className='share' onClick={openShare}>
+          Join
+        </div>
         <h1>User's Lists</h1>
       </header>
       <TodoLists

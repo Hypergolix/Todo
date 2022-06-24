@@ -16,3 +16,16 @@
   color: white;
 }
 
+.share{
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: aquamarine;
+  border-radius: 8px;
+}
+.share:hover{
+  cursor: pointer;
+  opacity: 0.8;
+}
