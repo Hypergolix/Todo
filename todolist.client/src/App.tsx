@@ -69,15 +69,17 @@ export default function App() {
 
   const openShare = () => {
     let code = prompt("Enter share code");
-    if (code !== '') navigate(`/TodoListPage?id=${code}`);
+    if (code !== null) navigate(`/TodoListPage?id=${code}`);
   }
 
   return (
     <div className="App">
       <header className="App-header">
-        <AddButton cb={addClicked} />
-        <div className='share' onClick={openShare}>
-          Join
+        <div className="Button-Container">
+          <AddButton cb={addClicked} />
+          <div className='share' onClick={openShare}>
+            Join
+          </div>
         </div>
         <h1>User's Lists</h1>
       </header>

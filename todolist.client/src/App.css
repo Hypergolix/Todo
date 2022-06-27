@@ -24,8 +24,14 @@
   align-items: center;
   background-color: aquamarine;
   border-radius: 8px;
+  margin-left: 10px;
 }
 .share:hover{
   cursor: pointer;
   opacity: 0.8;
+}
+
+.Button-Container{
+  display: flex;
+  flex-flow: row nowrap;
 }

@@ -18,6 +18,7 @@ nav{
     align-items: center;
     background-color: aquamarine;
     border-radius: 8px;
+    margin-right: 10px;
     &:hover{
       cursor: pointer;
       opacity: 0.8;
@@ -40,6 +41,11 @@ li{
   p{
     margin-left:20px;
   }
+}
+
+.Button-Container{
+  display: flex;
+  flex-flow: row nowrap;
 }
 
 // .IconBox{

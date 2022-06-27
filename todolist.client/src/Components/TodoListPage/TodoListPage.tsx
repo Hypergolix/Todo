@@ -13,6 +13,7 @@ export default function TodoListPage(props: any) {
   const [list, setList] = useState<TodoList>();
   const [searchParams, setSearchParams] = useSearchParams();
   const [title, setTitle] = useState("");
+  // const [sortType, setSortType] = useState("unsorted");
 
   // ?
   searchParams.get("id");
@@ -26,14 +27,31 @@ export default function TodoListPage(props: any) {
       const response = await fetch(`https://localhost:7297/api/TodoList/Complete?${searchParams}`, { mode: 'cors' });
       const json = await response.json();
       setList(json);
+      // const storedSort = sessionStorage.getItem("listSorted") || "";
+      // if (sortType) {
+      //   setSortType(storedSort);
+      // }
     })();
   }, [searchParams])
 
   const sortItems = () => {
-
     const updatedItemList = list!.todoItems;
     
-    updatedItemList!.sort((x, y) => Number(y.isCompleted) - Number(x.isCompleted));
+    switch(sessionStorage.getItem("listSorted"))
+    {
+      case "completedFirst":
+        updatedItemList!.sort((x, y) => Number(x.isCompleted) - Number(y.isCompleted));
+        sessionStorage.setItem("listSorted", "completedLast");
+        break;
+      case "completedLast":
+        updatedItemList!.sort((x, y) => x.id - y.id);
+        sessionStorage.setItem("listSorted", "unsorted");
+        break;
+      default:
+        updatedItemList!.sort((x, y) => Number(y.isCompleted) - Number(x.isCompleted));
+        sessionStorage.setItem("listSorted", "completedFirst");
+        break;
+    }
 
     const newObj: TodoList = {
       ...list,
@@ -41,8 +59,9 @@ export default function TodoListPage(props: any) {
       title: list!.title,
       guid: list!.guid
     }
-
     setList(newObj);
+
+    // completedFirst, completedLast and unsorted
   }
 
   const itemDelete = async (itemId: number) => {
@@ -136,18 +155,20 @@ export default function TodoListPage(props: any) {
   return (
     <>
       <nav className=''>
-        <Link to='/'>
-          <div className="IconBox" >
-            <BackIcon />
+        <div className='Button-Container'>
+          <Link to='/'>
+            <div className="IconBox" >
+              <BackIcon />
+            </div>
+          </Link>
+          <div
+            className="IconBox"
+            onClick={() => { navigator.clipboard.writeText(list!.guid); alert("link copied to clipboard!") }}>
+            <UploadIcon />
           </div>
-        </Link>
-        <div
-          className="IconBox"
-          onClick={() => { navigator.clipboard.writeText(list!.guid); alert("link copied to clipboard!") }}>
-          <UploadIcon />
-        </div>
-        <div className="IconBox" onClick={sortItems}>
-          <SortIcon />
+          <div className="IconBox" onClick={sortItems}>
+            <SortIcon />
+          </div>
         </div>
         <h1>{list?.title}</h1>
       </nav>
